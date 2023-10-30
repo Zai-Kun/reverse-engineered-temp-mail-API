@@ -1,7 +1,5 @@
-import asyncio
-
+import aiohttp
 from bs4 import BeautifulSoup
-from curl_cffi.requests import AsyncSession
 
 BASE_API_URL = "https://web2.temp-mail.org"
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36"
@@ -24,24 +22,15 @@ class Attachment:
             "User-Agent": self.temp_mail_class.user_agent,
             "Authorization": self.token,
         }
-        response_queue = asyncio.Queue()
 
-        async def perform_request():
-            def content_callback(chunk):
-                response_queue.put_nowait(chunk)
-
-            response = await self.temp_mail_class.session.get(
-                url=url, headers=headers, content_callback=content_callback
-            )
-            await response_queue.put(None)
-
-        stream_task = asyncio.create_task(perform_request())
-
-        while True:
-            chunk = await response_queue.get()
-            if chunk is None:
-                break
-            yield chunk
+        async with self.temp_mail_class.session.get(
+            url=url, headers=headers
+        ) as response:
+            while True:
+                chunk = await response.content.read(1024)  # Adjust chunk size as needed
+                if not chunk:
+                    break
+                yield chunk
 
     def __repr__(self):
         return f"Attachment(filename='{self.filename}', attachment_id='{self.attachment_id}', size={self.size}, mimetype='{self.mimetype}')"
@@ -93,8 +82,8 @@ class PreviewEmail:
             "Authorization": self.token,
         }
 
-        response = await self.temp_mail_class.session.get(url, headers=headers)
-        response_json = response.json()
+        async with self.temp_mail_class.session.get(url, headers=headers) as response:
+            response_json = await response.json()
 
         return DetailedEmail(response_json, self.temp_mail_class, self.token)
 
@@ -107,24 +96,26 @@ class AsyncTempMail:
         self.user_agent = USER_AGENT if not user_agent else user_agent
 
     async def __aenter__(self):
-        self.session = AsyncSession(impersonate="chrome110", timeout=99999)
+        self.session = aiohttp.ClientSession()
         return self
 
     async def __aexit__(self, *args):
-        self.session.close()
+        await self.session.close()
 
     async def fetch_new_email_adress(self):
         url = f"{BASE_API_URL}/mailbox"
         headers = {"User-Agent": self.user_agent}
-        response = await self.session.post(url, headers=headers)
-        response_json = response.json()
+
+        async with self.session.post(url, headers=headers) as response:
+            response_json = await response.json()
 
         return response_json
 
     async def fetch_all_emails(self, token):
         url = f"{BASE_API_URL}/messages"
         headers = {"User-Agent": self.user_agent, "Authorization": token}
-        response = await self.session.get(url, headers=headers)
-        response_json = response.json()
+
+        async with self.session.get(url, headers=headers) as response:
+            response_json = await response.json()
 
         return [PreviewEmail(email, self, token) for email in response_json["messages"]]
