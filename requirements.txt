@@ -1,2 +1,2 @@
 beautifulsoup4==4.12.2
-curl-cffi==0.5.9
+aiohttp==3.8.6
