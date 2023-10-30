@@ -67,8 +67,8 @@ Temp mail as an API which can be used to interface your Python code to it, but i
 ### Built Using
 
 * [![Python][python-badge]][python-url]
+* [![aiohttp][aiohttp-badge]][aiohttp-url]
 * [![Beautiful Soup][beautiful-soup-badge]][beautiful-soup-url]
-* [![curl_cffi][curl-cffi-badge]][curl-cffi-url]
 
 ## Getting Started
 
@@ -78,18 +78,46 @@ Temp mail as an API which can be used to interface your Python code to it, but i
 
 ### Installation
 
-Will be added soon
+1. Clone the repo
+
+   ```sh
+   git clone https://github.com/Zai-Kun/reverse-engineered-temp-mail-API.git
+   ```
+
+2. Copy the `temp_mail` directory into into your project directory.
+
+   ```sh
+   cp -r reverse-engineered-temp-mail-API/temp_mail <your_project_directory>
+   ```
+
+3. Create a Python virtual environment in your project's directory
+
+    ```sh
+    cd <your_project_directory>
+    python -m venv .venv
+    ```
+
+4. Activate the virtual environment
+
+    ```sh
+    source .venv/bin/activate
+    ```
+
+5. Install the pip packages your project directory's environment
+
+    ```sh
+    pip install -r ../temp_mail/requirements.txt
+    ```
 
 ## Usage
 
-Will be added soon
+Refer [example_usage.py](https://github.com/Zai-Kun/reverse-engineered-temp-mail-API/blob/dev/example_usage.py) for the guide on using the library.
 
 ## Roadmap
 
 * [x] Use multiple email ids
 * [x] View mailbox of previously created email id
 
-<!-- CONTRIBUTING -->
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -120,7 +148,7 @@ Repo Link: [https://github.com/Zai-Kun/reverse-engineered-temp-mail-API](https:/
 
 * [Leonard Richardson (Beautiful Soup)](https://www.crummy.com/self/)
 
-* [yifeikong (curl_cffi)](https://github.com/yifeikong)
+* [aio-libs (aiohttp)](https://github.com/aio-libs/aiohttp)
 
 * [othneildrew (README Template)](https://github.com/othneildrew)
 
@@ -135,9 +163,9 @@ Repo Link: [https://github.com/Zai-Kun/reverse-engineered-temp-mail-API](https:/
 [discussions-url]: https://github.com/Zai-Kun/reverse-engineered-temp-mail-API/discussions
 [python-badge]: https://img.shields.io/badge/Python-blue?logo=python&logoColor=yellow
 [python-url]: https://www.python.org/
-[beautiful-soup-badge]: https://img.shields.io/badge/Beautful%20Soup%20-%20blue
+[beautiful-soup-badge]: https://img.shields.io/badge/Beautiful%20Soup-4.12.2-green
 [beautiful-soup-url]: https://www.crummy.com/software/BeautifulSoup/
-[curl-cffi-url]: https://github.com/yifeikong/curl_cffi
-[curl-cffi-badge]: https://img.shields.io/badge/curl__cffi%20-%20green
+[aiohttp-url]: https://github.com/aio-libs/aiohttp
+[aiohttp-badge]: https://img.shields.io/static/v1?message=AIOHTTP&color=2C5BB4&logo=AIOHTTP&logoColor=FFFFFF&label=
 [license-badge]: https://img.shields.io/github/license/Zai-Kun/reverse-engineered-temp-mail-API
 [license-url]: https://github.com/Zai-Kun/reverse-engineered-temp-mail-API/blob/main/LICENSE
