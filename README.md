@@ -58,7 +58,7 @@ This can be useful if you want to test your project which uses email with variou
 
 ### Inspiration
 
-Temp mail as an API which can be used to interface your Python code to it, but it needs to be used with an API key. This project aims to fulfil the same purpose without using an API key.
+Temp mail has an official API which can be used to interface your Python code to it, but it needs to be used with an API key. This project aims to fulfil the same purpose without using an API key.
 
 ### How it works
 
