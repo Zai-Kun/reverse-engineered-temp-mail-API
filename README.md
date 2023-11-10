@@ -78,36 +78,19 @@ Temp mail as an API which can be used to interface your Python code to it, but i
 
 ### Installation
 
-1. Clone the repo
+1. Clone the repository:
 
    ```sh
    git clone https://github.com/Zai-Kun/reverse-engineered-temp-mail-API.git
    ```
 
-2. Copy the `temp_mail` directory into into your project directory.
-
-   ```sh
-   cp -r reverse-engineered-temp-mail-API/temp_mail <your_project_directory>
-   ```
-
-3. Create a Python virtual environment in your project's directory
+2. Install the necessary pip packages:
 
     ```sh
-    cd <your_project_directory>
-    python -m venv .venv
+    pip install -r reverse-engineered-temp-mail-API/requirements.txt
     ```
 
-4. Activate the virtual environment
-
-    ```sh
-    source .venv/bin/activate
-    ```
-
-5. Install the pip packages your project directory's environment
-
-    ```sh
-    pip install -r ../temp_mail/requirements.txt
-    ```
+3. Copy the `temp_mail` directory into your project directory. To do this, copy the `temp_mail` folder from the `reverse-engineered-temp-mail-API` directory and paste it into your project folder.
 
 ## Usage
 
