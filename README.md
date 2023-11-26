@@ -94,7 +94,7 @@ Temp mail has an official API which can be used to interface your Python code to
 
 ## Usage
 
-Refer [example_usage.py](https://github.com/Zai-Kun/reverse-engineered-temp-mail-API/blob/dev/example_usage.py) for the guide on using the library.
+Refer [example_usage.py](/example_usage.py) for the guide on using the library.
 
 ## Roadmap
 
